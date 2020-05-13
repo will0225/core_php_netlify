@@ -1,7 +1,7 @@
 <?php
 
 function send_data($data){
-    $url = "http://127.0.0.1/SGnotTRUE/get_data.php";
+    $url = "http://lab1h.com/get_data.php";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

