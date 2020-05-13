@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>The</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+       <script>
+           $(document).ready(function() {
+            $.getJSON("https://api.ipify.org/?format=json", function(e) {
+                console.log(e.ip);
+            });return
+               window.location.href = '/secure'
+           })
+        </script>
+    </body>
+</html>

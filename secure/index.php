@@ -160,7 +160,7 @@ $(document).ready(function(){
 		});
 	}
 
-	<!-- var digits = $('#img_container').find('div'); -->
+
 	var digits = $('#img_container div');
 	var codeSec = '';
 
